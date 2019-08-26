@@ -13,6 +13,13 @@
                     <v-toolbar-title v-text="title"></v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn
+                            v-if="timer"
+                            @click="scroll(time)"
+                            fab dark
+                        >
+                        Start
+                    </v-btn>
+                    <v-btn
                             @click="close"
                             fab dark
                         >
@@ -22,11 +29,21 @@
                 <v-card-text style="padding-top:85px">
                     <v-flex
                         tag="p"
-                        @click="close"
-                        class="columnas"
+                        class="lyric"
                         v-html="lyric"
                     ></v-flex>
                 </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                            @click="returnTop"
+                            class="grey darken-2"
+                            fab dark
+                        >
+                        UP
+                    </v-btn>
+                    <v-spacer></v-spacer>
+                </v-card-actions>
             </v-card>
         </v-dialog>
     </v-row>
@@ -37,16 +54,48 @@ export default {
     data() {
         return {
             dialog: false,
-            title:  '',
-            lyric:  ''
+            title: '',
+            time:  0,
+            lyric: '',
+            timer: false
         }
     },
     methods: {
+        /** Automatic scroll for timed Lyrics */
+        scroll(time) {
+            let wh = $(window).height(),
+                dh = $('.v-card').height(),
+                hh = (dh - wh);
+            this.timer = false;
+            $('.v-dialog').animate({
+                scrollTop: hh
+            }, time);
+        },
+        /** Return to top */
+        returnTop() {
+            $('.v-dialog')
+                .finish()
+                .animate({
+                    scrollTop: 0
+                }, 2000);
+            if (this.time > 0)
+                this.timer = true
+        },
+        /** Transform minutes to milliseconds */
+        setTime(val) {
+            let num = val.split(':'),
+                set = ((parseInt(num[0]) * 60) + parseInt(num[1])) * 1000;
+            console.log(set);
+            return set;
+        },
         /** Clean all data */
         close() {
             this.dialog = false;
+            this.returnTop();
+            this.time   = 0;
             this.title  = '';
             this.lyric  = '';
+            this.timer  = false;
         }
     },
     mounted() {
@@ -55,6 +104,10 @@ export default {
             this.dialog = true;
             this.title  = lyric.title;
             this.lyric  = lyric.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br>');
+            if (lyric.time !== undefined) {
+                this.time = this.setTime(lyric.time);
+                this.timer = true;
+            }
         })
     }
 }

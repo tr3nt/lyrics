@@ -5,6 +5,7 @@ const LYRICS =
     },
     {
         title: 'Dolor sit amet',
+        time: '0:10',
         lyrics:
             `Paragraph normal text
             Lorem ipsum dolor sit amet
@@ -12,7 +13,8 @@ const LYRICS =
             Second paragraph
             normal text
 
-            Third paragraph`
+            Third paragraph
+            normal text`
     },
     {
         title: 'L'

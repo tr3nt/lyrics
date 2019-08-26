@@ -9,4 +9,4 @@ const bold = (str, color = '#c5c728') => {
 
 const times = (str, color = 'rgba(227, 228, 173, 0.9)') => {
     return `<span style='font-family:"Times New Roman";color:${color}'>${str}</span>`
-}
+};

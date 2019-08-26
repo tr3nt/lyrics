@@ -3,6 +3,9 @@ window.Vue = require('vue');
 import Vuetify from 'vuetify'
 Vue.use(Vuetify);
 
+import $ from 'jquery'
+window.$ = window.jQuery = $;
+
 Vue.component('index-component', require('./components/IndexComponent').default);
 Vue.component('lyric-component', require('./components/LyricComponent').default);
 
