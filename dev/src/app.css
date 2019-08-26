@@ -39,6 +39,7 @@ h3 {
 }
 .columns {
     column-count: 2;
+    padding-top: 0 !important;
 }
 
 @media (max-width: 1260px) {

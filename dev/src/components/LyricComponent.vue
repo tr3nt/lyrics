@@ -70,7 +70,7 @@ export default {
             this.timer = false;
             $('.v-dialog').animate({
                 scrollTop: hh
-            }, time);
+            }, time, 'linear');
         },
         /** Return to top */
         returnTop() {
@@ -78,15 +78,18 @@ export default {
                 .finish()
                 .animate({
                     scrollTop: 0
-                }, 2000);
+                }, 2000, 'linear');
             if (this.time > 0)
                 this.timer = true
         },
         /** Transform minutes to milliseconds */
         setTime(val) {
             let num = val.split(':'),
-                set = ((parseInt(num[0]) * 60) + parseInt(num[1])) * 1000;
-            console.log(set);
+                set = 0;
+            if (this.isNumber(num[0]) && this.isNumber(num[1])) {
+                set = (((parseInt(num[0]) * 60) + parseInt(num[1])) * 1000) + 5000;
+                this.timer = true;
+            }
             return set;
         },
         /** Clean all data */
@@ -97,6 +100,10 @@ export default {
             this.title  = '';
             this.lyric  = '';
             this.timer  = false;
+        },
+        /** Util */
+        isNumber(val) {
+            return val !== null && val !== undefined && !isNaN(val) && parseInt(val) >= 0
         }
     },
     mounted() {
@@ -105,10 +112,8 @@ export default {
             this.dialog = true;
             this.title  = lyric.title;
             this.lyric  = lyric.lyrics.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            if (lyric.time !== undefined) {
-                this.time = this.setTime(lyric.time);
-                this.timer = true;
-            }
+            if (lyric.time !== undefined)
+                this.time = this.setTime(lyric.time)
         })
     }
 }
