@@ -30,6 +30,7 @@
                     <v-flex
                         tag="p"
                         class="lyric"
+                        :columns="time === 0"
                         v-html="lyric"
                     ></v-flex>
                 </v-card-text>
