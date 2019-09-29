@@ -1,4 +1,4 @@
-# Lyrics v1.1
+# Lyrics v1.2
 
 Lyrics viewer for singers and musicians
 
@@ -48,6 +48,6 @@ Abre el archivo **index.html** en cualquier navegador
 
 ## License
 
-This project is  under the vue, vuetify, jquery and laravel-mix licenses
+This project is under the vue, vuetify, jquery and laravel-mix licenses
 
 Este proyecto está bajo las licencias de vue, vuetify, jquery y laravel-mix

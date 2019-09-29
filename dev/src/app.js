@@ -6,6 +6,9 @@ Vue.use(Vuetify);
 import $ from 'jquery'
 window.$ = window.jQuery = $;
 
+require('../node_modules/vuetify/dist/vuetify.min.css');
+require('./app.css');
+
 Vue.component('index-component', require('./components/IndexComponent').default);
 Vue.component('lyric-component', require('./components/LyricComponent').default);
 

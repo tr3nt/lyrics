@@ -1,10 +1,9 @@
 <template>
-    <v-layout
-            align-center
-            justify-center
-            wrap
+    <v-row
+            align="center"
+            justify="center"
         >
-        <v-flex xs12>
+        <v-col cols="12">
             <v-list>
                 <template v-for="(item, key) in lc">
                     <v-list-item
@@ -30,9 +29,9 @@
                     <v-divider :key="key"></v-divider>
                 </template>
             </v-list>
-        </v-flex>
+        </v-col>
         <lyric-component></lyric-component>
-    </v-layout>
+    </v-row>
 </template>
 
 <script>

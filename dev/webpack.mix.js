@@ -11,9 +11,4 @@ let mix = require('laravel-mix');
  |
  */
 
-mix
-    .js('src/app.js', 'dist/')
-    .styles([
-        'node_modules/vuetify/dist/vuetify.min.css',
-        'src/app.css'
-    ], 'dist/app.css');
+mix.js('src/app.js', 'dist/');
